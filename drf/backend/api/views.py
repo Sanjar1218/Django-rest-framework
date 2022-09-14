@@ -1,11 +1,11 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-import json
+from .models import Item
+from .serializers import ItemSerializer
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
+@api_view(['get'])
 def echo(requests):
-    print(requests.method)
-    r = requests.GET
-    print(r)
-    # dct = json.loads(r)
-    dct = {'asd':'asdf'}
-    return JsonResponse(r) 
+    instance = Item.objects.all().order_by('?').first()
+    # r = model_to_dict(data)
+    r = ItemSerializer(instance).data
+    return Response(r)
