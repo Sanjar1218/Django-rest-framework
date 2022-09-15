@@ -6,7 +6,11 @@ class ItemSerializer(serializers.ModelSerializer):
     count = serializers.SerializerMethodField(method_name='st')
     
     def st(self, obj):
-        return obj.get_discount()
+        print(type(obj))
+        try:
+            return obj.get_discount()
+        except:
+            return 'error'
 
     class Meta:
         model = Item
