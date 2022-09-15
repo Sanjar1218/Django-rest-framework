@@ -1,12 +1,12 @@
 import requests
 
-endpoint = "http://127.0.0.1:8000/?third=three"
+endpoint = "http://127.0.0.1:8000/home/"
 
 dct = {
     'first':'asdf',
-    'first': 'one',
-    'second': 'two',
+    'dec': 'one',
+    'count': 'two',
 }
 
-r = requests.get(endpoint, params=dct)
+r = requests.post(endpoint, json=dct)
 print(r.json())
